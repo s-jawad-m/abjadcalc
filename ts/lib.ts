@@ -27,7 +27,8 @@ export function getAbjad(
     ) {
       total += 1;
     } else if (char === "ئ" || char === "ٮ") {
-      // 1. Check if it's immediately followed by a floating Hamza
+      
+      // 1. Check if it is immediately followed by a floating Hamza
       let hasFloatingHamza = false;
       if (i + 1 < inputStripped.length) {
         const nextChar = inputStripped.charAt(i + 1);
@@ -39,14 +40,14 @@ export function getAbjad(
       // 2. Check if this is the last letter of a word
       let isLast = true;
       for (let j = i + 1; j < inputStripped.length; j += 1) {
-        const nextChar = inputStripped.charAt(j);
+        const lookAheadChar = inputStripped.charAt(j);
         
-        // Ignore the floating hamza when looking ahead for the space
-        if (nextChar === "\u0654" || nextChar === "\u0655") {
+        // Ignore floating hamzas when looking ahead for the space
+        if (lookAheadChar === "\u0654" || lookAheadChar === "\u0655") {
           continue;
         }
         
-        if (/\s/.test(nextChar) || nextChar === "\u200C") {
+        if (/\s/.test(lookAheadChar) || lookAheadChar === "\u200C") {
           break;
         }
         // If we find any other character, it's not the last letter
@@ -54,18 +55,25 @@ export function getAbjad(
         break;
       }
 
-      // 3. Assign the value (matching your original ئ logic)
-      if (isLast) {
-        total += 10;
+      // 3. THE MASTER CALCULATION RULE
+      if (char === "ٮ" && !hasFloatingHamza) {
+        // It is JUST a dotless beh with no Hamza. It is purely a structural line.
+        total += 0;
       } else {
-        total += 1;
+        // It is either a precomposed "ئ", OR an Uthmani "ٮ" WITH a floating Hamza.
+        // We treat them both identically: 10 at the end, 1 in the middle.
+        if (isLast) {
+          total += 10;
+        } else {
+          total += 1;
+        }
       }
 
-      // 4. If we read it WITH the floating hamza, fast-forward the loop
-      // so we don't double-count the hamza on the next iteration
+      // 4. Fast-forward the loop so the Hamza block doesn't double-count
       if (hasFloatingHamza) {
         i += 1;
       }
+
     } else if (char === "ء" || char === "\u0654" || char === "\u0655") {
       if (ignoreHamzah) {
         continue;

@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 const getAbjad = (input, maghribiOrder = false, ignoreHamzah = false) => {
   const inputStripped = input.replace(/[\u064B-\u065F\u0670]/g, "");
@@ -6,7 +6,13 @@ const getAbjad = (input, maghribiOrder = false, ignoreHamzah = false) => {
   for (let i = 0; i < inputStripped.length; i += 1) {
     const char = inputStripped.charAt(i);
 
-    if (char === "ا" || char === "آ" || char === "أ" || char === "إ" || char === "ٱ") {
+    if (
+      char === "ا" ||
+      char === "آ" ||
+      char === "أ" ||
+      char === "إ" ||
+      char === "ٱ"
+    ) {
       total += 1;
     } else if (char === "ئ") {
       let isLast = true;
@@ -78,22 +84,39 @@ const getAbjad = (input, maghribiOrder = false, ignoreHamzah = false) => {
   return total;
 };
 
-const text = fs.readFileSync('surah_baqarah_full.txt', 'utf8');
+const text = fs.readFileSync("surah_baqarah_full.txt", "utf8");
 
 // Regex to capture everything up to an Eastern Arabic Number (which represents the end of an ayah)
 const regex = /(.*?)([١٢٣٤٥٦٧٨٩٠]+)/g;
 let match;
 
 const convertNum = (str) => {
-  const map = {'٠':0,'١':1,'٢':2,'٣':3,'٤':4,'٥':5,'٦':6,'٧':7,'٨':8,'٩':9};
-  return parseInt(str.split('').map(c => map[c]).join(''), 10);
+  const map = {
+    "٠": 0,
+    "١": 1,
+    "٢": 2,
+    "٣": 3,
+    "٤": 4,
+    "٥": 5,
+    "٦": 6,
+    "٧": 7,
+    "٨": 8,
+    "٩": 9,
+  };
+  return parseInt(
+    str
+      .split("")
+      .map((c) => map[c])
+      .join(""),
+    10,
+  );
 };
 
 const results = [];
 while ((match = regex.exec(text)) !== null) {
   let ayatText = match[1].trim();
   let num = convertNum(match[2]);
-  
+
   // Clean up punctuation that usually isn't counted in Abjad (they are skipped by the function anyway, but good to be safe)
   ayatText = ayatText.replace(/[ۖۗۚۛ۞ۙۘۜ۩]/g, "");
 
@@ -101,5 +124,5 @@ while ((match = regex.exec(text)) !== null) {
   results.push(`Ayat ${num}: ${total}`);
 }
 
-fs.writeFileSync('abjad_results_baqarah.txt', results.join('\n'));
-console.log(results.join('\n'));
+fs.writeFileSync("abjad_results_baqarah.txt", results.join("\n"));
+console.log(results.join("\n"));

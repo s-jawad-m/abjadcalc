@@ -1,8 +1,4 @@
-const getAbjad = (
-  input,
-  maghribiOrder = false,
-  ignoreHamzah = false,
-) => {
+const getAbjad = (input, maghribiOrder = false, ignoreHamzah = false) => {
   // Strip diacritics/marks that don't count towards abjad
   const inputStripped = input.replace(/[\u064B-\u065F\u0670]/g, "");
 
@@ -47,12 +43,7 @@ const getAbjad = (
       total += 3;
     } else if (char === "د") {
       total += 4;
-    } else if (
-      char === "ه" ||
-      char === "ة" ||
-      char === "ۀ" ||
-      char === "ہ"
-    ) {
+    } else if (char === "ه" || char === "ة" || char === "ۀ" || char === "ہ") {
       total += 5;
     } else if (char === "و" || char === "ؤ") {
       total += 6;
@@ -115,35 +106,35 @@ const tests = [
   {
     ayat: 1,
     text: "الم",
-    expected: 71
+    expected: 71,
   },
   {
     ayat: 2,
     text: "ذلك الكتب لا ريب فيه هدى للمتقين", // Used "الكتب" as in some Mushafs, let's see
-    expected: 2220
+    expected: 2220,
   },
   {
     ayat: 3,
-    text: "الذين يؤمنون بالغيب ويقيمون الصلوة ومما رزقنهم ينفقون", 
-    expected: 3167
+    text: "الذين يؤمنون بالغيب ويقيمون الصلوة ومما رزقنهم ينفقون",
+    expected: 3167,
   },
   {
     ayat: 4,
     text: "والذين يؤمنون بما انزل اليك وما انزل من قبلك وبالاخرة هم يوقنون",
-    expected: 2640
-  }
+    expected: 2640,
+  },
 ];
 
 console.log("Starting Abjad Comparison...\n");
 
-tests.forEach(test => {
-    const [calculated, unrecognized] = getAbjad(test.text, false, false);
-    const status = calculated === test.expected ? "✅ MATCH" : "❌ MISMATCH";
-    console.log(`Ayat ${test.ayat}:`);
-    console.log(`  Text: ${test.text}`);
-    console.log(`  Expected: ${test.expected}`);
-    console.log(`  Calculated: ${calculated}`);
-    console.log(`  Status: ${status}`);
-    if (unrecognized) console.log("  ⚠️ Warning: Unrecognized characters found.");
-    console.log("-----------------------------------");
+tests.forEach((test) => {
+  const [calculated, unrecognized] = getAbjad(test.text, false, false);
+  const status = calculated === test.expected ? "✅ MATCH" : "❌ MISMATCH";
+  console.log(`Ayat ${test.ayat}:`);
+  console.log(`  Text: ${test.text}`);
+  console.log(`  Expected: ${test.expected}`);
+  console.log(`  Calculated: ${calculated}`);
+  console.log(`  Status: ${status}`);
+  if (unrecognized) console.log("  ⚠️ Warning: Unrecognized characters found.");
+  console.log("-----------------------------------");
 });
