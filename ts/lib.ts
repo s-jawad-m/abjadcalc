@@ -112,7 +112,7 @@ export function getAbjad(
       total += 8;
     } else if (char === "ط") {
       total += 9;
-    } else if (char === "ی" || char === "ى" || char === "ي") {
+    } else if (char === "ی" || char === "ى" || char === "ي" || char === "ے") {
       total += 10;
     } else if (char === "ک" || char === "گ" || char === "ك" || char === "ڪ") {
       // Added U+06AA: Swash Kaf
