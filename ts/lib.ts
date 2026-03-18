@@ -27,7 +27,6 @@ export function getAbjad(
     ) {
       total += 1;
     } else if (char === "ئ" || char === "ٮ") {
-      
       // 1. Check if it is immediately followed by a floating Hamza
       let hasFloatingHamza = false;
       if (i + 1 < inputStripped.length) {
@@ -41,21 +40,25 @@ export function getAbjad(
       let isLast = true;
       for (let j = i + 1; j < inputStripped.length; j += 1) {
         const lookAheadChar = inputStripped.charAt(j);
-        
+
         // Ignore floating hamzas and zero-width spaces when looking ahead
-        if (lookAheadChar === "\u0654" || lookAheadChar === "\u0655" || lookAheadChar === "\u200C") {
+        if (
+          lookAheadChar === "\u0654" ||
+          lookAheadChar === "\u0655" ||
+          lookAheadChar === "\u200C"
+        ) {
           continue;
         }
-        
+
         if (/\s/.test(lookAheadChar)) {
           break; // It's a space, so we reached the end of the word
         }
-        
+
         // If we hit any other Arabic letter, it's NOT the last letter
         if (/[\u0621-\u06ED]/.test(lookAheadChar)) {
           isLast = false;
         }
-        break; 
+        break;
       }
 
       // 3. THE MASTER CALCULATION RULE
@@ -76,7 +79,6 @@ export function getAbjad(
       if (hasFloatingHamza) {
         i += 1;
       }
-
     } else if (char === "ء" || char === "\u0654" || char === "\u0655") {
       if (ignoreHamzah) {
         continue;
