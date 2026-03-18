@@ -42,17 +42,20 @@ export function getAbjad(
       for (let j = i + 1; j < inputStripped.length; j += 1) {
         const lookAheadChar = inputStripped.charAt(j);
         
-        // Ignore floating hamzas when looking ahead for the space
-        if (lookAheadChar === "\u0654" || lookAheadChar === "\u0655") {
+        // Ignore floating hamzas and zero-width spaces when looking ahead
+        if (lookAheadChar === "\u0654" || lookAheadChar === "\u0655" || lookAheadChar === "\u200C") {
           continue;
         }
         
-        if (/\s/.test(lookAheadChar) || lookAheadChar === "\u200C") {
-          break;
+        if (/\s/.test(lookAheadChar)) {
+          break; // It's a space, so we reached the end of the word
         }
-        // If we find any other character, it's not the last letter
-        isLast = false;
-        break;
+        
+        // If we hit any other Arabic letter, it's NOT the last letter
+        if (/[\u0621-\u06ED]/.test(lookAheadChar)) {
+          isLast = false;
+        }
+        break; 
       }
 
       // 3. THE MASTER CALCULATION RULE
@@ -69,7 +72,7 @@ export function getAbjad(
         }
       }
 
-      // 4. Fast-forward the loop so the Hamza block doesn't double-count
+      // 4. Fast-forward the loop so the Hamza block below doesn't double-count it
       if (hasFloatingHamza) {
         i += 1;
       }
@@ -87,11 +90,16 @@ export function getAbjad(
     } else if (char === "د") {
       total += 4;
     } else if (
-      char === "ه" ||
-      char === "ة" ||
-      char === "ۀ" ||
-      char === "ہ" || // U+06C1
-      char === "ھ" // U+06BE
+      char === "ه" || // U+0647: Arabic Letter Heh
+      char === "ة" || // U+0629: Teh Marbuta
+      char === "ۀ" || // U+06C0: Heh with Yeh Above
+      char === "ہ" || // U+06C1: Heh Goal
+      char === "ھ" || // U+06BE: Heh Doachashmee
+      char === "ە" || // U+06D5: Arabic Letter Ae
+      char === "ﻫ" || // U+FEEB: Isolated Form
+      char === "ﻬ" || // U+FEEC: Initial Form
+      char === "ﻪ" || // U+FEEA: Terminal Form
+      char === "ﺔ" // U+FE94: Teh Marbuta Terminal
     ) {
       total += 5;
     } else if (char === "و" || char === "ؤ") {
