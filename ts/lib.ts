@@ -26,8 +26,15 @@ export function getAbjad(
       char === "ٱ"
     ) {
       total += 1;
-    } else if (char === "ئ" || char === "ٮ") {
-      // 1. Check if it is immediately followed by a floating Hamza
+    } else if (
+      char === "ئ" || 
+      char === "ٮ" || 
+      char === "ی" || 
+      char === "ى" || 
+      char === "ي" || 
+      char === "ے"
+    ) {
+      // 1. Check for a floating Hamza immediately following
       let hasFloatingHamza = false;
       if (i + 1 < inputStripped.length) {
         const nextChar = inputStripped.charAt(i + 1);
@@ -36,46 +43,42 @@ export function getAbjad(
         }
       }
 
-      // 2. Check if this is the last letter of a word
+      // 2. Determine if positional math is required
+      const isPositional = (char === "ئ" || char === "ی" || hasFloatingHamza);
       let isLast = true;
-      for (let j = i + 1; j < inputStripped.length; j += 1) {
-        const lookAheadChar = inputStripped.charAt(j);
 
-        // Ignore floating hamzas and zero-width spaces when looking ahead
-        if (
-          lookAheadChar === "\u0654" ||
-          lookAheadChar === "\u0655" ||
-          lookAheadChar === "\u200C"
-        ) {
-          continue;
+      // 3. Only run the deep look-ahead if the character needs it
+      if (isPositional) {
+        for (let j = i + 1; j < inputStripped.length; j += 1) {
+          const lookAheadChar = inputStripped.charAt(j);
+          
+          if (
+            lookAheadChar === "\u0654" ||
+            lookAheadChar === "\u0655" ||
+            lookAheadChar === "\u200C"
+          ) {
+            continue;
+          }
+          
+          if (/\s/.test(lookAheadChar)) break;
+          
+          if (/[\u0621-\u06ED]/.test(lookAheadChar)) {
+            isLast = false;
+            break;
+          }
         }
-
-        if (/\s/.test(lookAheadChar)) {
-          break; // It's a space, so we reached the end of the word
-        }
-
-        // If we hit any other Arabic letter, it's NOT the last letter
-        if (/[\u0621-\u06ED]/.test(lookAheadChar)) {
-          isLast = false;
-        }
-        break;
       }
 
-      // 3. THE MASTER CALCULATION RULE
+      // 4. APPLY RULES
       if (char === "ٮ" && !hasFloatingHamza) {
-        // It is JUST a dotless beh with no Hamza. It is purely a structural line.
         total += 0;
+      } else if (isPositional) {
+        total += isLast ? 10 : 1;
       } else {
-        // It is either a precomposed "ئ", OR an Uthmani "ٮ" WITH a floating Hamza.
-        // We treat them both identically: 10 at the end, 1 in the middle.
-        if (isLast) {
-          total += 10;
-        } else {
-          total += 1;
-        }
+        total += 10;
       }
 
-      // 4. Fast-forward the loop so the Hamza block below doesn't double-count it
+      // 5. Fast-forward the loop past the floating Hamza
       if (hasFloatingHamza) {
         i += 1;
       }
@@ -112,10 +115,7 @@ export function getAbjad(
       total += 8;
     } else if (char === "ط") {
       total += 9;
-    } else if (char === "ی" || char === "ى" || char === "ي" || char === "ے") {
-      total += 10;
     } else if (char === "ک" || char === "گ" || char === "ك" || char === "ڪ") {
-      // Added U+06AA: Swash Kaf
       total += 20;
     } else if (char === "ل") {
       total += 30;

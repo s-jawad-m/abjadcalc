@@ -1,0 +1,2 @@
+from surah_younus txt file take the adad value next to each verse then run our code on the text of that surah for each verse list the adad   
+   value and then identify which verse is having a difference in adad value.
