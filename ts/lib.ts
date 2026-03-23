@@ -55,7 +55,8 @@ export function getAbjad(
           if (
             lookAheadChar === "\u0654" ||
             lookAheadChar === "\u0655" ||
-            lookAheadChar === "\u200C"
+            lookAheadChar === "\u200C" ||
+            lookAheadChar === "\u06E6" // Ignore Small Yeh when looking for the end of the word
           ) {
             continue;
           }
