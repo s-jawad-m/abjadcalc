@@ -3,9 +3,9 @@ export function getAbjad(
   maghribiOrder: boolean,
   ignoreHamzah: boolean,
 ): [number, boolean] {
-  // Strip diacritics but explicitly preserve \u0654 (Hamza Above) and \u0655 (Hamza Below) by me
+  // Split the final range to explicitly preserve \u06E6 (Arabic Small Yeh)
   const inputStripped = input.replace(
-    /[\u0640\u064B-\u0653\u0656-\u065F\u0670\u06D6-\u06ED]/g,
+    /[\u0640\u064B-\u0653\u0656-\u065F\u06D6-\u06E5\u06E7-\u06ED]/g,
     "",
   );
 
@@ -88,6 +88,9 @@ export function getAbjad(
       } else {
         total += 1;
       }
+    } else if (char === "\u06E6") {
+      // Arabic Small Yeh (ۦ)
+      total += 10;
     } else if (char === "ب" || char === "پ") {
       total += 2;
     } else if (char === "ج" || char === "چ") {
