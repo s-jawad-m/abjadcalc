@@ -44,7 +44,8 @@ export function getAbjad(
       }
 
       // 2. Determine if positional math is required
-      const isPositional = (char === "ئ" || char === "ی" || hasFloatingHamza);
+      // REMOVED `char === "ی"` so it strictly applies ONLY to ئ or Yas with a floating Hamza
+      const isPositional = (char === "ئ" || hasFloatingHamza);
       let isLast = true;
 
       // 3. Only run the deep look-ahead if the character needs it
@@ -55,8 +56,7 @@ export function getAbjad(
           if (
             lookAheadChar === "\u0654" ||
             lookAheadChar === "\u0655" ||
-            lookAheadChar === "\u200C" ||
-            lookAheadChar === "\u06E6" // Ignore Small Yeh when looking for the end of the word
+            lookAheadChar === "\u200C"
           ) {
             continue;
           }
@@ -74,8 +74,10 @@ export function getAbjad(
       if (char === "ٮ" && !hasFloatingHamza) {
         total += 0;
       } else if (isPositional) {
+        // Only triggers if it's ئ or has a floating Hamza attached
         total += isLast ? 10 : 1;
       } else {
+        // ALL plain Yas bypass the loop and get 10 regardless of position
         total += 10;
       }
 
