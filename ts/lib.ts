@@ -38,14 +38,15 @@ export function getAbjad(
       let hasFloatingHamza = false;
       if (i + 1 < inputStripped.length) {
         const nextChar = inputStripped.charAt(i + 1);
-        if (nextChar === "\u0654" || nextChar === "\u0655") {
+        // Included \u0674 (High Hamza)
+        if (nextChar === "\u0654" || nextChar === "\u0655" || nextChar === "\u0674") {
           hasFloatingHamza = true;
         }
       }
 
       // 2. Determine if positional math is required
-      // REMOVED `char === "ی"` so it strictly applies ONLY to ئ or Yas with a floating Hamza
-      const isPositional = (char === "ئ" || hasFloatingHamza);
+      // Must keep `char === "ی"` here so it correctly gets 1 in the middle and 10 at the end
+      const isPositional = (char === "ئ" || char === "ی" || hasFloatingHamza);
       let isLast = true;
 
       // 3. Only run the deep look-ahead if the character needs it
@@ -53,10 +54,13 @@ export function getAbjad(
         for (let j = i + 1; j < inputStripped.length; j += 1) {
           const lookAheadChar = inputStripped.charAt(j);
           
+          // Included \u0674 and \u06E6 so the loop properly looks past them
           if (
             lookAheadChar === "\u0654" ||
             lookAheadChar === "\u0655" ||
-            lookAheadChar === "\u200C"
+            lookAheadChar === "\u0674" || 
+            lookAheadChar === "\u200C" ||
+            lookAheadChar === "\u06E6"
           ) {
             continue;
           }
@@ -74,10 +78,10 @@ export function getAbjad(
       if (char === "ٮ" && !hasFloatingHamza) {
         total += 0;
       } else if (isPositional) {
-        // Only triggers if it's ئ or has a floating Hamza attached
+        // Only triggers if it's ئ, the specific character ی, or has a floating Hamza
         total += isLast ? 10 : 1;
       } else {
-        // ALL plain Yas bypass the loop and get 10 regardless of position
+        // ALL other plain Yas (ي, ى, ے) bypass the loop and get 10 regardless of position
         total += 10;
       }
 
