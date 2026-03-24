@@ -3,9 +3,9 @@ export function getAbjad(
   maghribiOrder: boolean,
   ignoreHamzah: boolean,
 ): [number, boolean] {
-  // Split the final range to explicitly preserve \u06E6 (Arabic Small Yeh)
+// Removed \u0640 to preserve the Tatweel (ـ) as an invisible buffer
   const inputStripped = input.replace(
-    /[\u0640\u064B-\u0653\u0656-\u065F\u06D6-\u06E5\u06E7-\u06ED]/g,
+    /[\u064B-\u0653\u0656-\u065F\u06D6-\u06E5\u06E7-\u06ED]/g,
     "",
   );
 
@@ -45,22 +45,22 @@ export function getAbjad(
       }
 
       // 2. Determine if positional math is required
-      // Must keep `char === "ی"` here so it correctly gets 1 in the middle and 10 at the end
-      const isPositional = (char === "ئ" || char === "ی" || hasFloatingHamza);
+      // Removed `char === "ی"` so all plain Yas get 10 points
+      const isPositional = (char === "ئ" || hasFloatingHamza);
       let isLast = true;
 
-      // 3. Only run the deep look-ahead if the character needs it
       if (isPositional) {
         for (let j = i + 1; j < inputStripped.length; j += 1) {
           const lookAheadChar = inputStripped.charAt(j);
           
-          // Included \u0674 and \u06E6 so the loop properly looks past them
+          // Added the Tatweel (ـ) so the loop looks past it
           if (
             lookAheadChar === "\u0654" ||
             lookAheadChar === "\u0655" ||
             lookAheadChar === "\u0674" || 
             lookAheadChar === "\u200C" ||
-            lookAheadChar === "\u06E6"
+            lookAheadChar === "\u06E6" ||
+            lookAheadChar === "ـ" 
           ) {
             continue;
           }
@@ -185,7 +185,7 @@ export function getAbjad(
       } else {
         total += 1000;
       }
-    } else if (char === "\u200C" || /\s/.test(char)) {
+    } else if (char === "\u200C" || char === "ـ" || /\s/.test(char)) {
       continue;
     } else {
       unrecognizedChars = true;
