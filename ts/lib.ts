@@ -1,9 +1,9 @@
 export function getAbjad(
   input: string,
-  maghribiOrder: boolean,
   ignoreHamzah: boolean,
+  shamsiOrder: boolean = false
 ): [number, boolean] {
-// Removed \u0640 to preserve the Tatweel (ـ) as an invisible buffer
+  // Removed \u0640 to preserve the Tatweel (ـ) as an invisible buffer
   const inputStripped = input.replace(
     /[\u064B-\u0653\u0656-\u065F\u06D6-\u06E5\u06E7-\u06ED]/g,
     "",
@@ -79,10 +79,11 @@ export function getAbjad(
         total += 0;
       } else if (isPositional) {
         // Only triggers if it's ئ, the specific character ی, or has a floating Hamza
-        total += isLast ? 10 : 1;
+        const endValue = shamsiOrder ? 1000 : 10;
+        total += isLast ? endValue : 1;
       } else {
         // ALL other plain Yas (ي, ى, ے) bypass the loop and get 10 regardless of position
-        total += 10;
+        total += shamsiOrder ? 1000 : 10;
       }
 
       // 5. Fast-forward the loop past the floating Hamza
@@ -97,13 +98,13 @@ export function getAbjad(
       }
     } else if (char === "\u06E6") {
       // Arabic Small Yeh (ۦ)
-      total += 10;
+      total += shamsiOrder ? 1000 : 10;
     } else if (char === "ب" || char === "پ") {
       total += 2;
     } else if (char === "ج" || char === "چ") {
-      total += 3;
+      total += shamsiOrder ? 5 : 3;
     } else if (char === "د") {
-      total += 4;
+      total += shamsiOrder ? 8 : 4;
     } else if (
       char === "ه" || // U+0647: Arabic Letter Heh
       char === "ة" || // U+0629: Teh Marbuta
@@ -116,75 +117,51 @@ export function getAbjad(
       char === "ﻪ" || // U+FEEA: Terminal Form
       char === "ﺔ" // U+FE94: Teh Marbuta Terminal
     ) {
-      total += 5;
+      total += shamsiOrder ? 900 : 5;
     } else if (char === "و" || char === "ؤ") {
-      total += 6;
+      total += shamsiOrder ? 800 : 6;
     } else if (char === "ز" || char === "ژ") {
-      total += 7;
+      total += shamsiOrder ? 20 : 7;
     } else if (char === "ح") {
-      total += 8;
+      total += shamsiOrder ? 6 : 8;
     } else if (char === "ط") {
-      total += 9;
+      total += shamsiOrder ? 70 : 9;
     } else if (char === "ک" || char === "گ" || char === "ك" || char === "ڪ") {
-      total += 20;
+      total += shamsiOrder ? 400 : 20;
     } else if (char === "ل") {
-      total += 30;
+      total += shamsiOrder ? 500 : 30;
     } else if (char === "م") {
-      total += 40;
+      total += shamsiOrder ? 600 : 40;
     } else if (char === "ن" || char === "ں") {
-      total += 50;
+      total += shamsiOrder ? 700 : 50;
     } else if (char === "س") {
-      if (maghribiOrder) {
-        total += 300;
-      } else {
-        total += 60;
-      }
+      total += shamsiOrder ? 30 : 60;
     } else if (char === "ع") {
-      total += 70;
+      total += shamsiOrder ? 90 : 70;
     } else if (char === "ف" || char === "ڡ") {
-      total += 80;
+      total += shamsiOrder ? 200 : 80;
     } else if (char === "ص") {
-      if (maghribiOrder) {
-        total += 60;
-      } else {
-        total += 90;
-      }
+      total += shamsiOrder ? 50 : 90;
     } else if (char === "ق" || char === "ٯ") {
-      total += 100;
+      total += shamsiOrder ? 300 : 100;
     } else if (char === "ر") {
-      total += 200;
+      total += shamsiOrder ? 10 : 200;
     } else if (char === "ش") {
-      if (maghribiOrder) {
-        total += 1000;
-      } else {
-        total += 300;
-      }
+      total += shamsiOrder ? 40 : 300;
     } else if (char === "ت") {
-      total += 400;
+      total += shamsiOrder ? 3 : 400;
     } else if (char === "ث") {
-      total += 500;
+      total += shamsiOrder ? 4 : 500;
     } else if (char === "خ") {
-      total += 600;
+      total += shamsiOrder ? 7 : 600;
     } else if (char === "ذ") {
-      total += 700;
+      total += shamsiOrder ? 9 : 700;
     } else if (char === "ض") {
-      if (maghribiOrder) {
-        total += 90;
-      } else {
-        total += 800;
-      }
+      total += shamsiOrder ? 60 : 800;
     } else if (char === "ظ") {
-      if (maghribiOrder) {
-        total += 800;
-      } else {
-        total += 900;
-      }
+      total += shamsiOrder ? 80 : 900;
     } else if (char === "غ") {
-      if (maghribiOrder) {
-        total += 900;
-      } else {
-        total += 1000;
-      }
+      total += shamsiOrder ? 100 : 1000;
     } else if (char === "\u200C" || char === "ـ" || /\s/.test(char)) {
       continue;
     } else {
@@ -199,17 +176,17 @@ export function getAbjad(
 export function getResult(
   inputField: HTMLInputElement,
   resultField: HTMLElement,
-  maghribiCheckbox: HTMLInputElement,
   hamzahCheckbox: HTMLInputElement,
+  shamsiCheckbox: HTMLInputElement
 ) {
   const input = inputField.value;
-  const maghribiOrder = maghribiCheckbox.checked;
   const ignoreHamzah = hamzahCheckbox.checked;
+  const shamsiOrder = shamsiCheckbox ? shamsiCheckbox.checked : false;
 
   const [total, unrecognizedChars] = getAbjad(
     input,
-    maghribiOrder,
     ignoreHamzah,
+    shamsiOrder,
   );
 
   const inputForDisplay = input.replace(/\s+/g, " ").trim();

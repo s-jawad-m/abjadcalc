@@ -9,12 +9,8 @@ const inputField = document.getElementById("hand-input") as HTMLInputElement;
 const resultField = document.getElementById("result") as HTMLElement;
 
 // Checkboxes
-const maghribiCheckbox = document.getElementById(
-  "maghribi-check",
-) as HTMLInputElement;
-const hamzahCheckbox = document.getElementById(
-  "hamzah-check",
-) as HTMLInputElement;
+const shamsiCheckbox = document.getElementById("shamsi-check") as HTMLInputElement;
+const hamzahCheckbox = document.getElementById("hamzah-check") as HTMLInputElement;
 
 // Submit button
 const goButton = document.getElementById("go-btn") as HTMLButtonElement;
@@ -181,7 +177,7 @@ document.getElementById("back-btn")?.addEventListener("click", () => {
 
 function submitOnEnter(e: KeyboardEvent) {
   if (e.key === "Enter" && !e.shiftKey) {
-    getResult(inputField, resultField, maghribiCheckbox, hamzahCheckbox);
+    getResult(inputField, resultField, hamzahCheckbox, shamsiCheckbox);
     e.preventDefault();
   }
 }
@@ -189,5 +185,5 @@ function submitOnEnter(e: KeyboardEvent) {
 inputField.addEventListener("keydown", submitOnEnter);
 
 goButton.addEventListener("click", () => {
-  getResult(inputField, resultField, maghribiCheckbox, hamzahCheckbox);
+  getResult(inputField, resultField, hamzahCheckbox, shamsiCheckbox);
 });

@@ -9,9 +9,8 @@ const inputField = document.getElementById("abjad-text") as HTMLInputElement;
 const resultField = document.getElementById("result") as HTMLElement;
 
 // Checkboxes
-const maghribiCheckbox = document.getElementById(
-  "maghribi-check",
-) as HTMLInputElement;
+// Replace your old Maghribi checkbox selector with this:
+const shamsiCheckbox = document.getElementById("shamsi-check") as HTMLInputElement;
 const hamzahCheckbox = document.getElementById(
   "hamzah-check",
 ) as HTMLInputElement;
@@ -32,7 +31,7 @@ const resetButton = document.getElementById(
 
 function submitOnEnter(e: KeyboardEvent) {
   if (e.key === "Enter" && !e.shiftKey) {
-    getResult(inputField, resultField, maghribiCheckbox, hamzahCheckbox);
+    getResult(inputField, resultField, hamzahCheckbox, shamsiCheckbox);
     e.preventDefault();
   }
 }
@@ -40,7 +39,7 @@ function submitOnEnter(e: KeyboardEvent) {
 inputField.addEventListener("keydown", submitOnEnter);
 
 submitButton.addEventListener("click", () => {
-  getResult(inputField, resultField, maghribiCheckbox, hamzahCheckbox);
+  getResult(inputField, resultField, hamzahCheckbox, shamsiCheckbox);
 });
 
 // Reset
