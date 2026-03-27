@@ -28,7 +28,8 @@ export function getAbjad(
       char === "آ" ||
       char === "أ" ||
       char === "إ" ||
-      char === "ٱ"
+      char === "ٱ" ||
+      char === "\ufe8e"
     ) {
       total += 1;
       aatishi++;
