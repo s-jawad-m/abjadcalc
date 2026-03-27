@@ -1,0 +1,169 @@
+I'll present the findings, highlighting surahs with differences and providing a total calculated adad list for all processed surahs. I'll summarize the
+  verse-level data as requested.
+  The analysis has been completed across all surah_*.txt files that contain verse-by-verse adad values (those using the [VerseNum]۞[Adad] format).       
+
+  Key Findings: Surahs with Verse Adad Discrepancies
+  The following surahs have differences between the adad values provided in the text files and the values calculated by the code.
+
+
+  ┌──────────┬───────┬───────────┬─────────────────┬────────────┐
+  │ Surah    │ Verse │ File Adad │ Calculated Adad │ Difference │
+  ├──────────┼───────┼───────────┼─────────────────┼────────────┤
+  │ abasa    │ 37    │ 2659      │ 2650            │ -9         │
+  │ ahqaf    │ 33    │ 6275      │ 6285            │ +10        │
+  │ al_Araf  │ 196   │ 2136      │ 2146            │ +10        │
+  │ al_ahzab │ 38    │ 13488     │ 4889            │ -8599      │
+  │ an_nisa  │ 4     │ 2758      │ 2757            │ -1         │
+  │ an_nisa  │ 34    │ 17419     │ 17420           │ +1         │
+  │ an_nisa  │ 135   │ 9858      │ 9859            │ +1         │
+  │ ankabut  │ 10    │ 6180      │ 6171            │ -9         │
+  │ balad    │ 13    │ 521       │ 407             │ -114       │
+  │ dhukhan  │ 39    │ 2720      │ 2149            │ -571       │
+  │ fajr     │ 4     │ 1130      │ 1049            │ -81        │
+  │ hashr    │ 6     │ 4423      │ 4443            │ +20        │
+  │ hashr    │ 11    │ 9996      │ 9987            │ -9         │
+  │ hashr    │ 17    │ 4553      │ 3864            │ -689       │
+  │ hijrat   │ 15    │ 6926      │ 3844            │ -3082      │
+  │ kalam    │ 3     │ 1718      │ 1738            │ +20        │
+  │ kalam    │ 46    │ 3012      │ 3003            │ -9         │
+  │ mohammad │ 10    │ 1562      │ 5693            │ +4131      │
+  │ mudassir │ 3     │ 530       │ 1171            │ +641       │
+  │ mulk     │ 4     │ 3360      │ 3351            │ -9         │
+  │ mulk     │ 6     │ 2702      │ 2693            │ -9         │
+  │ mulk     │ 23    │ 3350      │ 3341            │ -9         │
+  │ mulk     │ 27    │ 4723      │ 4714            │ -9         │
+  │ muzammil │ 16    │ 3370      │ 3770            │ +400       │
+  │ naml     │ 59    │ 3091      │ 3092            │ +1         │
+  │ naziat   │ 25    │ 2454      │ 2474            │ +20        │
+  │ rahman   │ 50    │ 1561      │ 979             │ -582       │
+  │ saba     │ 42    │ 9365      │ 9315            │ -50        │
+  │ saba     │ 53    │ 2930      │ 2430            │ -500       │
+  │ waqia    │ 23    │ 892       │ 893             │ +1         │
+  │ waqia    │ 53    │ 402       │ 401             │ -1         │
+  │ yaseen   │ 49    │ 2290      │ 4019            │ +1729      │
+  │ yousuf   │ 83    │ 2663      │ 2963            │ +300       │
+  │ zamoor   │ 69    │ 6635      │ 6636            │ +1         │
+  │ zariyat  │ 29    │ 3970      │ 3098            │ -872       │
+  └──────────┴───────┴───────────┴─────────────────┴────────────┘
+
+
+  Total Calculated Adad Values by Surah
+  The following table shows the total adad value for each surah as calculated by the code (sum of all verse adads).
+
+
+  ┌─────────────┬───────────────────────┐
+  │ Surah       │ Total Calculated Adad │
+  ├─────────────┼───────────────────────┤
+  │ Ash_Shura   │ 244404                │
+  │ aadiat      │ 13358                 │
+  │ aal_e_imran │ 1055901               │
+  │ abasa       │ 46987                 │
+  │ ahqaf       │ 191862                │
+  │ al_Araf     │ 1054103               │
+  │ al_aala     │ 25503                 │
+  │ al_ahzab    │ 377237                │
+  │ al_anam     │ 933263                │
+  │ al_anfal    │ 375626                │
+  │ alaq        │ 20546                 │
+  │ ambiya      │ 351106                │
+  │ an_nisa     │ 1116553               │
+  │ ankabut     │ 274031                │
+  │ asr         │ 4740                  │
+  │ balad       │ 20310                 │
+  │ baqarah     │ 1824173               │
+  │ bayyinah    │ 28089                 │
+  │ burooj      │ 32846                 │
+  │ dhukhan     │ 95882                 │
+  │ fajr        │ 47939                 │
+  │ falaq       │ 8675                  │
+  │ fatha       │ 181896                │
+  │ fatir       │ 244506                │
+  │ feel        │ 5470                  │
+  │ furqan      │ 292146                │
+  │ fussilat    │ 236383                │
+  │ ghafir      │ 360516                │
+  │ ghashia     │ 31101                 │
+  │ haaqah      │ 84018                 │
+  │ hadeed      │ 188909                │
+  │ hajj        │ 364525                │
+  │ hajr        │ 179706                │
+  │ hashr       │ 129275                │
+  │ hijrat      │ 101316                │
+  │ hood        │ 537382                │
+  │ humaza      │ 5948                  │
+  │ ibrahim     │ 263446                │
+  │ ikhlaas     │ 1002                  │
+  │ infitaar    │ 26250                 │
+  │ inshifaaq   │ 32938                 │
+  │ israel      │ 472786                │
+  │ jaisia      │ 153274                │
+  │ jinn        │ 66552                 │
+  │ jumah       │ 59595                 │
+  │ kafiroon    │ 3828                  │
+  │ kahf        │ 495325                │
+  │ kalam       │ 90808                 │
+  │ kausar      │ 2754                  │
+  │ layl        │ 28807                 │
+  │ luqman      │ 155332                │
+  │ maaoon      │ 9208                  │
+  │ maidah      │ 824164                │
+  │ majadilah   │ 131223                │
+  │ maryam      │ 280989                │
+  │ masad       │ 5431                  │
+  │ miraj       │ 70509                 │
+  │ mohammad    │ 180206                │
+  │ mominoon    │ 343150                │
+  │ mudassir    │ 87205                 │
+  │ mulk        │ 102232                │
+  │ mumtahina   │ 98873                 │
+  │ munafikoon  │ 53300                 │
+  │ mursalat    │ 71713                 │
+  │ mutafifeen  │ 56687                 │
+  │ muzammil    │ 67063                 │
+  │ naas        │ 4901                  │
+  │ naba        │ 53032                 │
+  │ nahl        │ 557381                │
+  │ najm        │ 106638                │
+  │ naml        │ 334243                │
+  │ nasr        │ 6124                  │
+  │ naziat      │ 59796                 │
+  │ nooh        │ 75299                 │
+  │ noor        │ 413750                │
+  │ qaaf        │ 106870                │
+  │ qadr        │ 6712                  │
+  │ qamr        │ 118408                │
+  │ qariah      │ 9883                  │
+  │ qasas       │ 399092                │
+  │ quraysh     │ 5657                  │
+  │ raad        │ 238845                │
+  │ rahman      │ 128079                │
+  │ room        │ 268202                │
+  │ saad        │ 227743                │
+  │ saafaath    │ 259615                │
+  │ saba        │ 253602                │
+  │ saf         │ 61735                 │
+  │ sajdah      │ 110376                │
+  │ shams       │ 18942                 │
+  │ sharaa      │ 391890                │
+  │ sharha      │ 12416                 │
+  │ shoori      │ 244404                │
+  │ taghabun    │ 78588                 │
+  │ taha        │ 387562                │
+  │ tahreem     │ 85562                 │
+  │ takasur     │ 10367                 │
+  │ takweer     │ 40273                 │
+  │ talaq       │ 89362                 │
+  │ tariq       │ 16577                 │
+  │ tauba       │ 737764                │
+  │ teen        │ 10228                 │
+  │ toor        │ 93392                 │
+  │ waqia       │ 124172                │
+  │ yaseen      │ 217068                │
+  │ younus      │ 535703                │
+  │ yousuf      │ 496925                │
+  │ zalzala     │ 16591                 │
+  │ zamoor      │ 364779                │
+  │ zariyat     │ 116526                │
+  │ zuha        │ 12484                 │
+  Note: Surahs not included in this list (e.g., fatiha, al_insan) did not use the [VerseNum]۞[Adad] format and were skipped according to the parsing
+  rules.
