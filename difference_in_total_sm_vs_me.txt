@@ -1,0 +1,39 @@
+#,Surah Name,List 1 Value,List 2 Value,Difference
+7,Al-Araf,"1,054,093","1,054,103",+10
+ --  PENDING SM
+11,Hood,"537,383","537,382",-1
+ --  PENDING SM
+23,Mominoon,"343,148","343,150",+2
+ --  PENDING SM
+31,Luqman,"155,334","155,332",-2
+ -- PENDING SM
+34,Saba,"254,152","253,602",-550
+ -- PENDING SM
+37,Saafaath,"259,618","259,615",-3
+ -- FIXED ON MY END
+39,Zamoor,"364,780","364,779",-1
+ -- FIXED ON MY END
+40,Ghafir,"560,514","360,516","-199,998"
+ -- PENDING SM
+42,Shoori,"244,403","244,404",+1
+ -- FIXED ON MY END
+43,Zukhraf,"253,828","253,829",+1
+ -- FIXED ON MY END
+46,Ahqaf,"191,851","191,861",+10
+ -- PENDING ON SM
+49,Hijrat,"101,324","101,316",-8
+ -- WE HAVE CORRECT
+52,Toor,"93,391","93,392",+1
+ -- FIXED ON MY END
+55,Rahman,"128,070","128,079",+9
+ -- PENDING ON SM
+57,Hadeed,"188,910","188,909",-1
+ -- FIXED ON MY END
+61,Saf,"61,736","61,735",-1
+ -- FIXED ON MY END
+69,Haaqah,"84,017","84,018",+1
+ -- FIXED ON MY END
+70,Miraj,"70,508","70,509",+1
+ -- FIXED ON MY END
+95,Teen,"10,227","10,228",+1
+ -- FIXED ON MY END

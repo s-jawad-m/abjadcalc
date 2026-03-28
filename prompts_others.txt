@@ -1,0 +1,43 @@
+سورة المعارج 
+سورة الحاقة
+سورة الصف
+سورة الحديد
+سورة الطور
+سورة الحجرات
+سورة الاحقاف
+سورة الزخرف.                       سورة المدثر
+سورة لقمن
+
+
+PROMPT FOR TOTAL ADAD OF EACH SURAH :
+Context: I am working on the abjadcalc project. I have 114 text files starting with surah_ Each file contains verses with an existing adad value written next 
+   to the text.
+                                                                                                                                                                 
+   Task: Perform a comparative audit of the adad values across all 114 files using the logic in my lib.ts.
+                                                                                                                                                                 
+                                                                                                                                                                 
+   Logic Execution: Apply the calculateAbjad() function from lib.ts to the Arabic text of each surah to generate a total Calculated Value.
+                                                                                                                                                                 
+   Reporting: For each surah, output a summary in the following format:
+                                                                                                                                                                 
+   Surah Name as in file name. along with the total calculated adad value
+
+
+PROMPT FOR AYAT VS AYAT FOR EACH SURAH :
+Context: I am working on the abjadcalc project. I have 114 text files starting with surah_ Each file contains verses with an existing adad value written next 
+   to the text.
+                                                                                                                                                                 
+   Task: Perform a comparative audit of the adad values across all 114 files using the logic in my lib.ts.
+                                                                                                                                                                 
+   File Parsing: For each surah_*.txt file, extract the Arabic text and the existing adad value for every verse.
+                                                                                                                                                                 
+                                                                                                                                                                 
+   Logic Execution: Apply the calculateAbjad() function from lib.ts to the Arabic text of each verse to generate a New Calculated Value.
+                                                                                                                                                                 
+   Discrepancy Check: Compare the New Calculated Value against the Existing Value. Identify the specific verse numbers where a difference occurs.
+                                                                                                                                                                 
+   Reporting: I want all the 114 surah's. For each surah, output a summary in the following format:
+                                                                                                                                                                 
+   Discrepancies: [Verse Number]: Existing [Val] vs Calculated [Val] (or "None" if they match).
+   I also I want the log of this result if you can't show the full output in terminal create a file
+   and save your output there for me to review for all the 114 surah's.

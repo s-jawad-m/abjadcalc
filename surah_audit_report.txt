@@ -1,0 +1,345 @@
+SURAH ADAD AUDIT REPORT
+==============================
+
+Surah: surah_aadiat.txt
+Discrepancies: None
+------------------------------
+Surah: surah_aal_e_imran.txt
+Discrepancies: None
+------------------------------
+Surah: surah_abasa.txt
+Discrepancies: 37: Existing 2659 vs Calculated 2650 -- FIXED
+------------------------------
+Surah: surah_ahqaf.txt
+Discrepancies: 33: Existing 6275 vs Calculated 6285 -- PENDING ON SM
+------------------------------
+Surah: surah_al_aala.txt
+Discrepancies: None
+------------------------------
+Surah: surah_al_ahzab.txt
+Discrepancies: 38: Existing 13488 vs Calculated 4889 -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+------------------------------
+Surah: surah_al_anam.txt
+Discrepancies: None
+------------------------------
+Surah: surah_al_anfal.txt
+Discrepancies: None
+------------------------------
+Surah: surah_al_Araf.txt
+Discrepancies: 196: Existing 2136 vs Calculated 2146 --  PENDING SM
+------------------------------
+Surah: surah_al_insan.txt
+Discrepancies: None
+------------------------------
+Surah: surah_alaq.txt
+Discrepancies: None
+------------------------------
+Surah: surah_ambiya.txt
+Discrepancies: None
+------------------------------
+Surah: surah_an_nisa.txt
+Discrepancies: 34: Existing 17419 vs Calculated 17420, 135: Existing 9858 vs Calculated 9859 -- FIXED ON MY END
+------------------------------
+Surah: surah_ankabut.txt
+Discrepancies: 10: Existing 6180 vs Calculated 6171 -- FIXED ON MY END
+------------------------------
+Surah: surah_asr.txt
+Discrepancies: None
+------------------------------
+Surah: surah_balad.txt
+Discrepancies: 13: Existing 521 vs Calculated 407 -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+------------------------------
+Surah: surah_baqarah.txt
+Discrepancies: None
+------------------------------
+Surah: surah_bayyinah.txt
+Discrepancies: None
+------------------------------
+Surah: surah_burooj.txt
+Discrepancies: None
+------------------------------
+Surah: surah_dhukhan.txt
+Discrepancies: 39: Existing 2720 vs Calculated 2149 -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+------------------------------
+Surah: surah_fajr.txt
+Discrepancies: 4: Existing 1130 vs Calculated 1049 -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+------------------------------
+Surah: surah_falaq.txt
+Discrepancies: None
+------------------------------
+Surah: surah_fatha.txt
+Discrepancies: None
+------------------------------
+Surah: surah_fatiha.txt
+Discrepancies: None
+------------------------------
+Surah: surah_fatir.txt
+Discrepancies: None
+------------------------------
+Surah: surah_feel.txt
+Discrepancies: None
+------------------------------
+Surah: surah_furqan.txt
+Discrepancies: None
+------------------------------
+Surah: surah_fussilat.txt
+Discrepancies: None
+------------------------------
+Surah: surah_ghafir.txt
+Discrepancies: None
+------------------------------
+Surah: surah_ghashia.txt
+Discrepancies: None
+------------------------------
+Surah: surah_haaqah.txt
+Discrepancies: None
+------------------------------
+Surah: surah_hadeed.txt
+Discrepancies: None
+------------------------------
+Surah: surah_hajj.txt
+Discrepancies: None
+------------------------------
+Surah: surah_hajr.txt
+Discrepancies: None
+------------------------------
+Surah: surah_hashr.txt -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+Discrepancies: 6: Existing 4423 vs Calculated 4443, 11: Existing 9996 vs Calculated 9987, 17: Existing 4553 vs Calculated 3864
+------------------------------
+Surah: surah_hijrat.txt
+Discrepancies: 15: Existing 6926 vs Calculated 3844 -- MINE IS CORRECT
+------------------------------
+Surah: surah_hood.txt
+Discrepancies: None
+------------------------------
+Surah: surah_humaza.txt
+Discrepancies: None
+------------------------------
+Surah: surah_ibrahim.txt
+Discrepancies: None
+------------------------------
+Surah: surah_ikhlaas.txt
+Discrepancies: None
+------------------------------
+Surah: surah_infitaar.txt
+Discrepancies: None
+------------------------------
+Surah: surah_inshifaaq.txt
+Discrepancies: None
+------------------------------
+Surah: surah_israel.txt
+Discrepancies: None
+------------------------------
+Surah: surah_jaisia.txt
+Discrepancies: None
+------------------------------
+Surah: surah_jinn.txt
+Discrepancies: None
+------------------------------
+Surah: surah_jumah.txt
+Discrepancies: None
+------------------------------
+Surah: surah_kafiroon.txt
+Discrepancies: None
+------------------------------
+Surah: surah_kahf.txt
+Discrepancies: None
+------------------------------
+Surah: surah_kalam.txt -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+Discrepancies: 3: Existing 1718 vs Calculated 1738, 46: Existing 3012 vs Calculated 3003
+------------------------------
+Surah: surah_kausar.txt
+Discrepancies: None
+------------------------------
+Surah: surah_layl.txt
+Discrepancies: None
+------------------------------
+Surah: surah_luqman.txt
+Discrepancies: None
+------------------------------
+Surah: surah_maaoon.txt
+Discrepancies: None
+------------------------------
+Surah: surah_maidah.txt
+Discrepancies: None
+------------------------------
+Surah: surah_majadilah.txt
+Discrepancies: None
+------------------------------
+Surah: surah_maryam.txt
+Discrepancies: None
+------------------------------
+Surah: surah_masad.txt
+Discrepancies: None
+------------------------------
+Surah: surah_miraj.txt
+Discrepancies: None
+------------------------------
+Surah: surah_mohammad.txt
+Discrepancies: 10: Existing 1562 vs Calculated 5693 -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+------------------------------
+Surah: surah_mominoon.txt
+Discrepancies: None
+------------------------------
+Surah: surah_mudassir.txt
+Discrepancies: 3: Existing 530 vs Calculated 1171 -- PENDING SM
+------------------------------
+Surah: surah_mulk.txt -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+Discrepancies: 4: Existing 3360 vs Calculated 3351, 6: Existing 2702 vs Calculated 2693, 23: Existing 3350 vs Calculated 3341, 27: Existing 4723 vs Calculated 4714
+------------------------------
+Surah: surah_mumtahina.txt
+Discrepancies: None
+------------------------------
+Surah: surah_munafikoon.txt
+Discrepancies: None
+------------------------------
+Surah: surah_mursalat.txt
+Discrepancies: None
+------------------------------
+Surah: surah_mutafifeen.txt
+Discrepancies: None
+------------------------------
+Surah: surah_muzammil.txt
+Discrepancies: 16: Existing 3370 vs Calculated 3770 -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+------------------------------
+Surah: surah_naas.txt
+Discrepancies: None
+------------------------------
+Surah: surah_naba.txt
+Discrepancies: None
+------------------------------
+Surah: surah_nahl.txt
+Discrepancies: None
+------------------------------
+Surah: surah_najm.txt
+Discrepancies: None
+------------------------------
+Surah: surah_naml.txt
+Discrepancies: 59: Existing 3091 vs Calculated 3092 -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+------------------------------
+Surah: surah_nasr.txt
+Discrepancies: None
+------------------------------
+Surah: surah_naziat.txt
+Discrepancies: 25: Existing 2454 vs Calculated 2474 -- FIXED ON MY END
+------------------------------
+Surah: surah_nooh.txt
+Discrepancies: None
+------------------------------
+Surah: surah_noor.txt
+Discrepancies: None
+------------------------------
+Surah: surah_qaaf.txt
+Discrepancies: None
+------------------------------
+Surah: surah_qadr.txt
+Discrepancies: None
+------------------------------
+Surah: surah_qamr.txt
+Discrepancies: None
+------------------------------
+Surah: surah_qariah.txt
+Discrepancies: None
+------------------------------
+Surah: surah_qasas.txt
+Discrepancies: None
+------------------------------
+Surah: surah_qiyama.txt
+Discrepancies: None
+------------------------------
+Surah: surah_quraysh.txt
+Discrepancies: None
+------------------------------
+Surah: surah_raad.txt
+Discrepancies: None
+------------------------------
+Surah: surah_rahman.txt
+Discrepancies: 50: Existing 1561 vs Calculated 979 -- PENDING SM
+------------------------------
+Surah: surah_room.txt
+Discrepancies: None
+------------------------------
+Surah: surah_saad.txt
+Discrepancies: None
+------------------------------
+Surah: surah_saafaath.txt
+Discrepancies: None
+------------------------------
+Surah: surah_saba.txt
+Discrepancies: 42: Existing 9365 vs Calculated 9315, 53: Existing 2930 vs Calculated 2430 -- PENDING SM
+------------------------------
+Surah: surah_saf.txt
+Discrepancies: None
+------------------------------
+Surah: surah_sajdah.txt
+Discrepancies: None
+------------------------------
+Surah: surah_shams.txt
+Discrepancies: None
+------------------------------
+Surah: surah_sharaa.txt
+Discrepancies: None
+------------------------------
+Surah: surah_sharha.txt
+Discrepancies: None
+------------------------------
+Surah: surah_shoori.txt
+Discrepancies: None
+------------------------------
+Surah: surah_taghabun.txt
+Discrepancies: None
+------------------------------
+Surah: surah_taha.txt
+Discrepancies: None
+------------------------------
+Surah: surah_tahreem.txt
+Discrepancies: None
+------------------------------
+Surah: surah_takasur.txt
+Discrepancies: None
+------------------------------
+Surah: surah_takweer.txt
+Discrepancies: None
+------------------------------
+Surah: surah_talaq.txt
+Discrepancies: None
+------------------------------
+Surah: surah_tariq.txt
+Discrepancies: None
+------------------------------
+Surah: surah_tauba.txt
+Discrepancies: None
+------------------------------
+Surah: surah_teen.txt
+Discrepancies: None
+------------------------------
+Surah: surah_toor.txt
+Discrepancies: None
+------------------------------
+Surah: surah_waqia.txt -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+Discrepancies: 23: Existing 892 vs Calculated 893, 53: Existing 402 vs Calculated 401
+------------------------------
+Surah: surah_yaseen.txt
+Discrepancies: 49: Existing 2290 vs Calculated 4019 -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+------------------------------
+Surah: surah_younus.txt
+Discrepancies: None
+------------------------------
+Surah: surah_yousuf.txt
+Discrepancies: 83: Existing 2663 vs Calculated 2963 -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+------------------------------
+Surah: surah_zalzala.txt
+Discrepancies: None
+------------------------------
+Surah: surah_zamoor.txt
+Discrepancies: 69: Existing 6635 vs Calculated 6636 -- FIXED ON MY END
+------------------------------
+Surah: surah_zariyat.txt
+Discrepancies: 29: Existing 3970 vs Calculated 3098 -- TOTAL IS CORRECT (LIKELY FIXED ON MY END)
+------------------------------
+Surah: surah_zuha.txt
+Discrepancies: None
+------------------------------
+Surah: surah_zukhraf.txt
+Discrepancies: None
+------------------------------
