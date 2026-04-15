@@ -4,7 +4,7 @@ export function getAbjad(
   shamsiOrder: boolean = false
 ): [number, boolean, { aatishi: number; baadi: number; aabi: number; khaki: number }] {
   // Removed \u0640 to preserve the Tatweel (ـ) as an invisible buffer
-  const inputStripped = input.replace(
+  const inputStripped = input.normalize("NFC").replace(
     /[\u064B-\u0653\u0656-\u065F\u06D6-\u06E5\u06E7-\u06ED]/g,
     "",
   );
@@ -87,12 +87,19 @@ export function getAbjad(
       } else if (isPositional) {
         // Only triggers if it's ئ, the specific character ی, or has a floating Hamza
         const endValue = shamsiOrder ? 1000 : 10;
-        total += isLast ? endValue : 1;
+        
+        if (isLast) {
+          total += endValue;
+          baadi++; // Counted as Yeh Adad, so take Yeh Anasir (Air)
+        } else {
+          total += 1;
+          aatishi++; // Counted as Hamza Adad, so take Hamza Anasir (Fire)
+        }
       } else {
         // ALL other plain Yas (ي, ى, ے) bypass the loop and get 10 regardless of position
         total += shamsiOrder ? 1000 : 10;
+        baadi++; // Treat as Yeh element
       }
-      baadi++;
 
       // 5. Fast-forward the loop past the floating Hamza
       if (hasFloatingHamza) {
@@ -121,6 +128,7 @@ export function getAbjad(
     } else if (
       char === "ه" || // U+0647: Arabic Letter Heh
       char === "ة" || // U+0629: Teh Marbuta
+      char === "ۃ" || // U+06C3: Heh Goal with Hamza
       char === "ۀ" || // U+06C0: Heh with Yeh Above
       char === "ہ" || // U+06C1: Heh Goal
       char === "ھ" || // U+06BE: Heh Doachashmee
