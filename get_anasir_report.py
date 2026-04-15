@@ -1,5 +1,6 @@
 import os
 import re
+import unicodedata
 
 surahs_114 = [
     (1, 'Fatiha'), (2, 'Baqarah'), (3, 'Aal-e-Imran'), (4, 'An-Nisa'), (5, 'Maidah'),
@@ -58,10 +59,13 @@ def normalize(name):
     return name.lower().replace('-', '_').replace(' ', '_').replace("'", "").replace('`', '')
 
 def get_anasir_counts(input_str):
+
+    normalized_str = unicodedata.normalize('NFC', input_str)
+    # Strip characters as per lib.ts
     input_stripped = re.sub(
         r'[\u064B-\u0653\u0656-\u065F\u06D6-\u06E5\u06E7-\u06ED]',
         "",
-        input_str
+        normalized_str
     )
 
     aatishi = 0 # Fire
@@ -72,29 +76,101 @@ def get_anasir_counts(input_str):
     i = 0
     while i < len(input_stripped):
         char = input_stripped[i]
-        
-        # Aatishi (Fire)
-        if char in ["ا", "آ", "أ", "إ", "ٱ", "\ufe8e", "ء", "\u0674", "\u0654", "\u0655", "ه", "ة", "ۀ", "ہ", "ھ", "ە", "ﻫ", "ﻬ", "ﻪ", "ﺔ", "ط", "م", "ف", "ڡ", "ش", "ذ"]:
+
+        if char in ["ا", "آ", "أ", "إ", "ٱ", "\ufe8e"]:
             aatishi += 1
-        # Baadi (Air)
-        elif char in ["ئ", "ٮ", "ی", "ى", "ي", "ے", "\u06E6", "ب", "پ", "و", "ؤ", "ن", "ں", "ص", "ت", "ض"]:
-            # Check for floating Hamza if it's the start of Yeh family
-            if char in ["ئ", "ٮ", "ی", "ى", "ي", "ے"]:
-                if i + 1 < len(input_stripped):
-                    next_char = input_stripped[i+1]
-                    if next_char in ["\u0654", "\u0655", "\u0674"]:
-                        # Consume it
-                        i += 1
+        elif char in ["ئ", "ٮ", "ی", "ى", "ي", "ے"]:
+            # 1. Check for a floating Hamza immediately following
+            has_floating_hamza = False
+            if i + 1 < len(input_stripped):
+                next_char = input_stripped[i+1]
+                if next_char in ["\u0654", "\u0655", "\u0674"]:
+                    has_floating_hamza = True
+            
+            is_positional = (char == "ئ" or has_floating_hamza)
+            is_last = True
+            
+            if is_positional:
+                for j in range(i + 1, len(input_stripped)):
+                    look_ahead_char = input_stripped[j]
+                    if look_ahead_char in ["\u0654", "\u0655", "\u0674", "\u200C", "\u06E6", "ـ"]:
+                        continue
+                    if look_ahead_char.isspace():
+                        break
+                    if re.match(r'[\u0621-\u06ED]', look_ahead_char):
+                        is_last = False
+                        break
+            
+            if char == "ٮ" and not has_floating_hamza:
+                pass # skip
+            elif is_positional:
+                if is_last:
+                    baadi += 1
+                else:
+                    aatishi += 1
+            else:
+                baadi += 1
+            
+            if has_floating_hamza:
+                i += 1
+        elif char in ["ء", "\u0674", "\u0654", "\u0655"]:
+            aatishi += 1
+        elif char == "\u06E6":
             baadi += 1
-        # Aabi (Water)
-        elif char in ["ج", "چ", "ز", "ژ", "ک", "گ", "ك", "ڪ", "س", "ق", "ٯ", "ث", "ظ"]:
+        elif char in ["ب", "پ"]:
+            baadi += 1
+        elif char in ["ج", "چ"]:
             aabi += 1
-        # Khaki (Earth)
-        elif char in ["د", "ح", "ل", "ع", "ر", "خ", "غ"]:
+        elif char == "د":
+            khaki += 1
+        elif char in ["ه", "ة", "ۃ", "ۀ", "ہ", "ھ", "ە", "ﻫ", "ﻬ", "ﻪ", "ﺔ"]:
+            aatishi += 1
+        elif char in ["و", "ؤ"]:
+            baadi += 1
+        elif char in ["ز", "ژ"]:
+            aabi += 1
+        elif char == "ح":
+            khaki += 1
+        elif char == "ط":
+            aatishi += 1
+        elif char in ["ک", "گ", "ك", "ڪ"]:
+            aabi += 1
+        elif char == "ل":
+            khaki += 1
+        elif char == "م":
+            aatishi += 1
+        elif char in ["ن", "ں"]:
+            baadi += 1
+        elif char == "س":
+            aabi += 1
+        elif char == "ع":
+            khaki += 1
+        elif char in ["ف", "ڡ"]:
+            aatishi += 1
+        elif char == "ص":
+            baadi += 1
+        elif char in ["ق", "ٯ"]:
+            aabi += 1
+        elif char == "ر":
+            khaki += 1
+        elif char == "ش":
+            aatishi += 1
+        elif char == "ت":
+            baadi += 1
+        elif char == "ث":
+            aabi += 1
+        elif char == "خ":
+            khaki += 1
+        elif char == "ذ":
+            aatishi += 1
+        elif char == "ض":
+            baadi += 1
+        elif char == "ظ":
+            aabi += 1
+        elif char == "غ":
             khaki += 1
         
         i += 1
-        
     return aatishi, baadi, aabi, khaki
 
 # Map numbers to filenames
@@ -139,14 +215,6 @@ for num, name in surahs_114:
     fn = find_file_for_surah(num, name)
     if fn:
         num_to_file[num] = fn
-
-missing = []
-for num, name in surahs_114:
-    if num not in num_to_file:
-        missing.append((num, name))
-
-if missing:
-    print(f"DEBUG: Still missing {len(missing)} surahs: {missing}")
 
 output_lines = ["No.\tSurah Name\tNaar (Fire)\tBaad (Air)\tMa (Water)\tKhak (Earth)"]
 for num, name in surahs_114:
